@@ -1,0 +1,6 @@
+ultralytics==8.0.188
+opencv-python
+pandas
+matplotlib
+tqdm
+
