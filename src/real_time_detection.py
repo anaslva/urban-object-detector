@@ -11,8 +11,8 @@ if not cap.isOpened():
     exit()
 
 while True:
-    ret, frame = cap.read()
-    if not ret:
+    success, frame = cap.read()
+    if not success:
         break
 
     results = model(frame, verbose=False)[0]
@@ -25,9 +25,8 @@ while True:
         conf = float(box.conf[0])
 
         if conf < 0.3:
-            continue  # Ignora detecções fracas
+            continue  
 
-        # Desenhar retângulo e label
         cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
         text = f"{label} {conf:.2f}"
         cv2.putText(frame, text, (x1, y1 - 10),
@@ -42,3 +41,4 @@ while True:
 cap.release()
 
 cv2.destroyAllWindows()
+

@@ -3,7 +3,6 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 from ultralytics import YOLO
-from tqdm import tqdm
 
 video_path = "src/videos/39031.avi"  
 frame_limit = 100  
@@ -36,7 +35,7 @@ def update_count(detected_labels):
 
 print("...processando frames com YOLO...")
 
-for i in tqdm(range(frame_count)):
+for i in range(frame_count):
     frame_path = f"src/frames/frame_{i:04d}.jpg"
     results = model(frame_path, verbose=False)[0]
     labels = [model.names[int(cls)] for cls in results.boxes.cls.tolist()]
